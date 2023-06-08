@@ -12,6 +12,7 @@ class Product {
     required this.category,
     required this.takeout,
     required this.score,
+    required this.phoneNumber,
   });
   final String? category;
   final int? id;
@@ -23,12 +24,8 @@ class Product {
   final String? takeout; 
   final String? userid;
   final double? score;
+  final String? phoneNumber;
 }
-
-
-
-
-
 
 
 
@@ -37,5 +34,4 @@ class Product {
   String get assetPackage => 'shrine_images';
   @override
   String toString() => "$name (id=$id)";
-
  */

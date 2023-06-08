@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../model/product.dart';
 import '../app/appstate.dart';
 import 'package:mobileapp_project/app/wishprovider.dart';
+import '../detail.dart';
 
 class ChinaPage extends StatefulWidget {
   const ChinaPage({Key? key}) : super(key: key);
@@ -27,6 +28,11 @@ class _ChinaPageState extends State<ChinaPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('중식'),
+        actions: [
+          IconButton(
+              onPressed: () => Navigator.pushNamed(context, '/add'),
+              icon: const Icon(Icons.add))
+        ],
       ),
       body: Consumer<AppStatement>(
         builder: (context, appStatement, _) {
@@ -40,7 +46,13 @@ class _ChinaPageState extends State<ChinaPage> {
                   .any((item) => item.name == product.name);
               if (product.category == '중식') {
                 return GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context, 
+                      MaterialPageRoute(builder: (context)=>Detailpage(
+                        product: products[index],
+                      ),),);
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Card(

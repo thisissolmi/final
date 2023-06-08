@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobileapp_project/detail.dart';
 import 'package:mobileapp_project/foodpage.dart/dessert.dart';
 import 'package:mobileapp_project/foodpage.dart/japan.dart';
 import '../home.dart';

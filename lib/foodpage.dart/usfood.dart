@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../model/product.dart';
 import '../app/appstate.dart';
 import 'package:mobileapp_project/app/wishprovider.dart';
-
+import '../detail.dart';
 class EuFoodPage extends StatefulWidget {
   const EuFoodPage({Key? key}) : super(key: key);
 
@@ -18,6 +18,7 @@ class _EuFoodPageState extends State<EuFoodPage> {
     final wishlistProvider = Provider.of<WishlistProvider>(context);
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true, 
         title: const Text('양식'),
       ),
       body: Consumer<AppStatement>(
@@ -33,7 +34,11 @@ class _EuFoodPageState extends State<EuFoodPage> {
                     .any((item) => item.name == product.name);
                 return GestureDetector(
                   onTap: () {
-                    // Navigate to detail page
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Detailpage(
+                     product: products[index],
+                        ),
+                      ),
+                     );
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),

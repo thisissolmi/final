@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../model/product.dart';
 import '../app/appstate.dart';
 import 'package:mobileapp_project/app/wishprovider.dart';
-
+import '../detail.dart';
 class JapanPage extends StatefulWidget {
   const JapanPage({Key? key}) : super(key: key);
 
@@ -26,6 +26,7 @@ class _JapanPageState extends State<JapanPage> {
     final wishlistProvider = Provider.of<WishlistProvider>(context);
     return Scaffold(
       appBar: AppBar(
+         centerTitle: true, 
         title: const Text('일식'),
       ),
       body: Consumer<AppStatement>(
@@ -40,7 +41,11 @@ class _JapanPageState extends State<JapanPage> {
                   .any((item) => item.name == product.name);
               if (product.category == '일식') {
                 return GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Detailpage(
+                        product: products[index],
+                      ),),);
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Card(

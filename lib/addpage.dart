@@ -22,6 +22,7 @@ class _ProductAddPageState extends State<ProductAddPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   final String defaultImage =
       "http://handong.edu/site/handong/res/img/logo.png";
   AppStatement appstate = AppStatement();
@@ -38,6 +39,7 @@ class _ProductAddPageState extends State<ProductAddPage> {
     final category = selectedCategory;
     final takeout = selectedTakeout;
     final score = scoreController.text;
+    final phone = phoneController.text;
     try {
       String imageUri = defaultImage;
 
@@ -60,6 +62,7 @@ class _ProductAddPageState extends State<ProductAddPage> {
         takeout: takeout,
         userid: userUid,
         score: double.tryParse(score),
+        phoneNumber: phone,
       );
       await appstate.addProductToDatabase(product);
     } catch (error) {
@@ -70,6 +73,7 @@ class _ProductAddPageState extends State<ProductAddPage> {
     priceController.clear();
     descriptionController.clear();
     scoreController.clear();
+    phoneController.clear();
   }
 
   Future<void> _pickImage() async {
@@ -200,6 +204,17 @@ class _ProductAddPageState extends State<ProductAddPage> {
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
                 labelText: '평점',
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: TextField(
+              controller: phoneController,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                labelText: '전화번호',
               ),
             ),
           ),

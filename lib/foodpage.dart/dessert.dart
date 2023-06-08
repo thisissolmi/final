@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../model/product.dart';
 import '../app/appstate.dart';
 import 'package:mobileapp_project/app/wishprovider.dart';
+import '../detail.dart';
 
 class DessertPage extends StatefulWidget {
   const DessertPage({Key? key}) : super(key: key);
@@ -26,6 +27,7 @@ class _DessertPageState extends State<DessertPage> {
     final wishlistProvider = Provider.of<WishlistProvider>(context);
     return Scaffold(
       appBar: AppBar(
+         centerTitle: true, 
         title: const Text('디저트'),
       ),
       body: Consumer<AppStatement>(
@@ -40,7 +42,11 @@ class _DessertPageState extends State<DessertPage> {
                   .any((item) => item.name == product.name);
               if (product.category == '디저트') {
                 return GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Detailpage(
+                      product: products[index],
+                      ),),);
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Card(

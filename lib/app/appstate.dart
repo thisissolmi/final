@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -52,6 +51,7 @@ class AppStatement extends ChangeNotifier {
               final userid = document.data()['userId'] as String?;
               final takeout = document.data()['takeout'] as String?;
               final score = document.data()['score'] as double?;
+              final phone = document.data()['phone'] as String?;
               _productMessages.add(
                 Product(
                   id: id,
@@ -64,6 +64,7 @@ class AppStatement extends ChangeNotifier {
                   category: category,
                   takeout: takeout,
                   score: score,
+                  phoneNumber: phone,
                 ),
               );
             }
@@ -102,6 +103,7 @@ class AppStatement extends ChangeNotifier {
               final userid = doc['userId'] as String?;
               final takeout = doc['takeout'] as String?;
               final score = doc['score'] as double?;
+              final phone = doc['phone'] as String?;
               return Product(
                 id: id,
                 timestamp: timestamp,
@@ -113,6 +115,7 @@ class AppStatement extends ChangeNotifier {
                 category: category,
                 takeout: takeout,
                 score: score,
+                phoneNumber: phone,
               );
             } else {
               return null;
@@ -208,6 +211,8 @@ class AppStatement extends ChangeNotifier {
       'content': product.place,
       'userId': product.userid,
       'category': product.category,
+      'phone': product.phoneNumber,
+      'score': product.score,
     });
   }
 
@@ -258,6 +263,8 @@ class AppStatement extends ChangeNotifier {
         'time': product.time,
         'content': product.place,
         'timestamp': product.timestamp,
+        'phone': product.phoneNumber,
+        'score': product.score,
       });
     }
   }
@@ -281,7 +288,7 @@ class AppStatement extends ChangeNotifier {
 
       String? imageUrl = await taskSnapshot.ref.getDownloadURL();
 
-      return imageUrl!;
+      return imageUrl;
     } else {
       return 'http://handong.edu/site/handong/res/img/logo.png';
     }

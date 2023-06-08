@@ -18,14 +18,14 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false, // 뒤 페이지 가기 
         centerTitle: true, // title text center에 위치하게 끔하는 파라미터
         title: const Text('오 먹 ?',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
         actions: [
           IconButton(
               onPressed: () => Navigator.pushNamed(context, '/add'),
-              icon: const Icon(Icons.add))
+              icon: const Icon(Icons.add)),
         ],
       ),
       body: ListView(
